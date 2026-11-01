@@ -1,0 +1,940 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Money Harvest | Grow Your Financial Future</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --cream: #fffdf0;
+    --green: #e8efcf;
+    --darkgreen: #435b36;
+    --brown: #98704d;
+    --lightbrown: #f2e6d6;
+    --text: #353b2e;
+}
+
+* { box-sizing: border-box; scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+}
+
+h1,h2,h3,.serif {
+    font-family: 'Playfair Display', serif;
+}
+
+nav {
+    background: rgba(255,253,240,.96);
+    border-bottom: 1px solid #e9e4d3;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--darkgreen);
+    font-size: 23px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #555b4d;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nav-links a:hover { color: var(--brown); }
+
+.btn {
+    display: inline-block;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 7px;
+    background: var(--brown);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover { background: #795535; }
+
+.btn-green { background: var(--darkgreen); }
+
+.container {
+    max-width: 1120px;
+    padding: 0 22px;
+    margin: auto;
+}
+
+section { padding: 65px 0; }
+
+.hero {
+    padding: 85px 0;
+    min-height: 490px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.hero h1 {
+    font-size: clamp(38px,5vw,58px);
+    line-height: 1.13;
+    margin: 15px 0;
+}
+
+.hero p {
+    color: #6d7164;
+    line-height: 1.8;
+}
+
+.eyebrow {
+    color: var(--brown);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #eee9dc;
+    border-radius: 12px;
+    padding: 23px;
+    box-shadow: 0 5px 20px rgba(65,65,35,.04);
+}
+
+.hero-card {
+    background: var(--green);
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.hero-card .amount {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--darkgreen);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    text-align: center;
+    padding: 35px 0;
+}
+
+.stats strong {
+    display: block;
+    font-size: 29px;
+    color: var(--darkgreen);
+}
+
+.section-title {
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.section-subtitle {
+    color: #77796e;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+
+.icon {
+    font-size: 29px;
+    margin-bottom: 13px;
+}
+
+.card h3 {
+    font-size: 21px;
+    margin: 8px 0;
+}
+
+.card p {
+    font-size: 14px;
+    color: #73766b;
+    line-height: 1.7;
+}
+
+.card a {
+    color: var(--darkgreen);
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.green-section {
+    background: var(--green);
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #deded1;
+    border-radius: 7px;
+    background: white;
+    margin: 8px 0 16px;
+    font-family: inherit;
+}
+
+label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.result {
+    background: #edf2df;
+    padding: 17px;
+    border-radius: 8px;
+    margin-top: 15px;
+    display: none;
+}
+
+.quiz-option {
+    display: block;
+    padding: 14px;
+    margin: 10px 0;
+    border: 1px solid #e7e3d7;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.quiz-option:hover {
+    background: var(--green);
+}
+
+footer {
+    background: var(--green);
+    padding: 45px 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+}
+
+footer a {
+    display: block;
+    text-decoration: none;
+    color: #626b55;
+    margin: 10px 0;
+    font-size: 13px;
+}
+
+.chat-fab {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    border: none;
+    background: var(--darkgreen);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 200;
+}
+
+#chatbox {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 320px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 30px #9996;
+    display: none;
+    z-index: 200;
+}
+
+@media(max-width:800px) {
+    .hero-grid,.grid,.grid-2 {
+        grid-template-columns: 1fr;
+    }
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .nav-links { gap: 10px; }
+    .nav-inner { flex-wrap: wrap; }
+    .footer-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media(max-width:480px) {
+    .nav-links { font-size: 11px; }
+    .hero { padding: 45px 0; }
+    .section-title { font-size: 29px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+<div class="nav-inner">
+    <div class="logo">🌱 MONEY HARVEST</div>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#education">Learn</a>
+        <a href="#quiz">Quizzes</a>
+        <a href="#tools">Tools</a>
+        <a href="#community">Community</a>
+        <a href="#certificates">Certificates</a>
+    </div>
+
+    <a href="#login" class="btn">Get Started</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<div class="container hero-grid">
+
+<div>
+    <div class="eyebrow">WELCOME TO MONEY HARVEST</div>
+
+    <h1>Take Control of Your Financial Future.</h1>
+
+    <p>
+        Learn smart money habits, build financial confidence,
+        and make better financial decisions with our
+        interactive financial literacy platform.
+    </p>
+
+    <br>
+
+    <a href="#education" class="btn">Start Learning →</a>
+    <a href="#tools" class="btn btn-green">Explore Tools</a>
+
+    <p>✓ Free financial education &nbsp; ✓ Learn at your own pace</p>
+</div>
+
+<div class="hero-card">
+    <div class="eyebrow">YOUR FINANCIAL JOURNEY</div>
+    <h2>Grow your money wisely.</h2>
+    <p>Small steps today can create a stronger financial tomorrow.</p>
+
+    <div class="amount">₹25,000</div>
+    <p>Example savings goal</p>
+
+    <div style="height:9px;background:#fff;border-radius:20px;overflow:hidden">
+        <div style="height:100%;width:65%;background:#647c4b"></div>
+    </div>
+
+    <p>65% of your example goal</p>
+    <a href="#tools" class="btn btn-green">Explore Financial Tools</a>
+</div>
+
+</div>
+</section>
+
+<!-- STATISTICS -->
+<div class="container stats">
+    <div><strong>10+</strong><span>Learning Topics</span></div>
+    <div><strong>8+</strong><span>Interactive Quizzes</span></div>
+    <div><strong>5+</strong><span>Financial Tools</span></div>
+    <div><strong>24/7</strong><span>Learning Access</span></div>
+</div>
+
+<!-- EDUCATION -->
+<section id="education" class="green-section">
+<div class="container">
+    <div class="eyebrow">KNOWLEDGE IS WEALTH</div>
+    <h2 class="section-title">Explore Financial Learning</h2>
+    <p class="section-subtitle">Build essential financial skills through simple and interactive lessons.</p>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="icon">💰</div>
+            <h3>Money Management</h3>
+            <p>Understand budgeting, saving, spending and managing your monthly income.</p>
+            <a href="#quiz">Explore Lessons →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">📈</div>
+            <h3>Investment Basics</h3>
+            <p>Learn about stocks, mutual funds, SIPs and long-term investing.</p>
+            <a href="#tools">Explore Lessons →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🏦</div>
+            <h3>Banking Essentials</h3>
+            <p>Understand bank accounts, UPI, digital payments and interest.</p>
+            <a href="#quiz">Explore Lessons →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🛡️</div>
+            <h3>Financial Safety</h3>
+            <p>Recognize online fraud, phishing attacks and financial scams.</p>
+            <a href="#scam">Explore Lessons →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">💳</div>
+            <h3>Credit & Loans</h3>
+            <p>Understand credit scores, loans, EMIs and responsible borrowing.</p>
+            <a href="#quiz">Explore Lessons →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🎯</div>
+            <h3>Financial Planning</h3>
+            <p>Set financial goals and learn how to build an emergency fund.</p>
+            <a href="#tools">Explore Lessons →</a>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+<div class="container">
+    <div class="eyebrow">TEST YOUR KNOWLEDGE</div>
+    <h2 class="section-title">Financial Knowledge Quiz</h2>
+    <p class="section-subtitle">Challenge yourself and improve your financial knowledge.</p>
+
+    <div class="card" style="max-width:650px;margin:auto">
+        <div id="quiz-content">
+            <p class="eyebrow" id="question-number">QUESTION 1 OF 5</p>
+            <h3 id="question">What is the best purpose of an emergency fund?</h3>
+            <div id="options"></div>
+            <button class="btn" onclick="nextQuestion()">Next Question →</button>
+        </div>
+        <div id="quiz-result" class="result"></div>
+    </div>
+</div>
+</section>
+
+<!-- FINANCIAL TOOLS -->
+<section id="tools" class="green-section">
+<div class="container">
+    <div class="eyebrow">SMART FINANCIAL DECISIONS</div>
+    <h2 class="section-title">Financial Tools & Calculators</h2>
+    <p class="section-subtitle">Plan your finances with easy-to-use calculators.</p>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="icon">📊</div>
+            <h3>SIP Calculator</h3>
+
+            <label>Monthly Investment (₹)</label>
+            <input type="number" id="monthly" value="5000">
+
+            <label>Expected Annual Return (%)</label>
+            <input type="number" id="rate" value="12">
+
+            <label>Investment Period (Years)</label>
+            <input type="number" id="years" value="10">
+
+            <button class="btn" onclick="calculateSIP()">Calculate</button>
+            <div id="sip-result" class="result"></div>
+        </div>
+
+        <div class="card">
+            <div class="icon">💳</div>
+            <h3>EMI Calculator</h3>
+
+            <label>Loan Amount (₹)</label>
+            <input type="number" id="loan" value="500000">
+
+            <label>Interest Rate (%)</label>
+            <input type="number" id="loanrate" value="9">
+
+            <label>Loan Duration (Years)</label>
+            <input type="number" id="loanyears" value="5">
+
+            <button class="btn" onclick="calculateEMI()">Calculate</button>
+            <div id="emi-result" class="result"></div>
+        </div>
+
+        <div class="card">
+            <div class="icon">🎯</div>
+            <h3>Savings Calculator</h3>
+
+            <label>Monthly Savings (₹)</label>
+            <input type="number" id="saving" value="2000">
+
+            <label>Number of Years</label>
+            <input type="number" id="savingyears" value="5">
+
+            <button class="btn" onclick="calculateSavings()">Calculate</button>
+            <div id="saving-result" class="result"></div>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<!-- SCAM DETECTOR -->
+<section id="scam">
+<div class="container">
+    <div class="eyebrow">STAY SAFE ONLINE</div>
+    <h2 class="section-title">Financial Scam Detector</h2>
+    <p class="section-subtitle">Check suspicious messages and learn to identify common scam warning signs.</p>
+
+    <div class="card" style="max-width:700px;margin:auto">
+        <h3>🔍 Check a suspicious message</h3>
+
+        <textarea id="scam-message" rows="5"
+        placeholder="Paste your suspicious SMS, email or message here..."></textarea>
+
+        <button class="btn" onclick="checkScam()">Analyze Message</button>
+
+        <div id="scam-result" class="result"></div>
+        <p style="font-size:12px">Note: This is a basic educational checker, not a guarantee that a message is safe.</p>
+    </div>
+</div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community" class="green-section">
+<div class="container">
+    <div class="eyebrow">LEARN TOGETHER</div>
+    <h2 class="section-title">Financial Learning Community</h2>
+    <p class="section-subtitle">Share your knowledge, ask questions and learn from others.</p>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="icon">👥</div>
+            <h3>Community Discussions</h3>
+            <p>Discuss financial topics and exchange useful knowledge.</p>
+            <a href="#login">Join Community →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">💡</div>
+            <h3>Share Knowledge</h3>
+            <p>Share your financial learning experiences and tips.</p>
+            <a href="#login">Share Ideas →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🌟</div>
+            <h3>Learn Together</h3>
+            <p>Improve your financial awareness with fellow learners.</p>
+            <a href="#login">Get Started →</a>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+<div class="container">
+    <div class="eyebrow">CELEBRATE YOUR PROGRESS</div>
+    <h2 class="section-title">Certificates & Achievements</h2>
+    <p class="section-subtitle">Complete learning activities and celebrate your achievements.</p>
+
+    <div class="grid-2">
+
+        <div class="card">
+            <div class="icon">🏆</div>
+            <h3>Financial Literacy Certificate</h3>
+            <p>Complete financial literacy learning activities to demonstrate your knowledge.</p>
+            <a href="#education">Start Learning →</a>
+        </div>
+
+        <div class="card">
+            <div class="icon">🎓</div>
+            <h3>Knowledge Achievements</h3>
+            <p>Track your learning journey and improve your quiz performance.</p>
+            <a href="#quiz">Take a Quiz →</a>
+        </div>
+
+    </div>
+</div>
+</section>
+
+<!-- LOGIN -->
+<section id="login" class="green-section">
+<div class="container">
+    <div class="eyebrow">JOIN MONEY HARVEST</div>
+    <h2 class="section-title">Start Your Financial Journey</h2>
+
+    <div class="card" style="max-width:450px;margin:30px auto">
+        <h2 id="auth-title">Create Your Account</h2>
+
+        <label>Full Name</label>
+        <input id="name" placeholder="Enter your name">
+
+        <label>Email Address</label>
+        <input id="email" type="email" placeholder="Enter your email">
+
+        <label>Password</label>
+        <input id="password" type="password" placeholder="Enter your password">
+
+        <button class="btn" style="width:100%" onclick="register()">Create Account</button>
+        <button class="btn btn-green" style="width:100%;margin-top:10px" onclick="login()">Login</button>
+
+        <p id="auth-message"></p>
+        <div id="user-info"></div>
+    </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+    <div class="footer-grid">
+
+        <div>
+            <div class="logo">🌱 MONEY HARVEST</div>
+            <p>Learn today, grow tomorrow. Build a financially confident future.</p>
+        </div>
+
+        <div>
+            <h3>Learn</h3>
+            <a href="#education">Financial Education</a>
+            <a href="#quiz">Quizzes</a>
+            <a href="#certificates">Certificates</a>
+        </div>
+
+        <div>
+            <h3>Tools</h3>
+            <a href="#tools">SIP Calculator</a>
+            <a href="#tools">EMI Calculator</a>
+            <a href="#scam">Scam Detector</a>
+        </div>
+
+        <div>
+            <h3>Community</h3>
+            <a href="#community">Discussions</a>
+            <a href="#login">Login</a>
+            <a href="#login">Register</a>
+        </div>
+
+    </div>
+
+    <hr style="margin:30px 0;border-color:#cbd5ad">
+    <p style="text-align:center">© 2026 Money Harvest. All rights reserved.</p>
+</div>
+</footer>
+
+<!-- CHAT BUTTON -->
+<button class="chat-fab" onclick="toggleChat()">💬</button>
+
+<div id="chatbox">
+    <h3>Harvest AI 🌱</h3>
+    <p>Ask a basic financial education question.</p>
+    <input id="chat-input" placeholder="Ask something...">
+    <button class="btn" onclick="askAI()">Send</button>
+    <div id="chat-answer"></div>
+</div>
+
+<script>
+const API = "/api";
+
+/* AUTHENTICATION */
+
+async function register() {
+    const response = await fetch(API + "/register", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        })
+    });
+
+    const data = await response.json();
+    document.getElementById("auth-message").textContent = data.message;
+}
+
+async function login() {
+    const response = await fetch(API + "/login", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        })
+    });
+
+    const data = await response.json();
+    document.getElementById("auth-message").textContent = data.message;
+
+    if (data.success) {
+        document.getElementById("user-info").textContent =
+            "Welcome, " + data.name + "! You are logged in.";
+    }
+}
+
+/* SIP CALCULATOR */
+
+async function calculateSIP() {
+    const monthly = Number(document.getElementById("monthly").value);
+    const rate = Number(document.getElementById("rate").value);
+    const years = Number(document.getElementById("years").value);
+
+    if (monthly <= 0 || rate < 0 || years <= 0 ||
+        !Number.isFinite(monthly + rate + years)) {
+        alert("Please enter valid values.");
+        return;
+    }
+
+    const response = await fetch(API + "/calculate-sip", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({monthly, rate, years})
+    });
+
+    const data = await response.json();
+
+    if (!data.success) {
+        alert(data.message);
+        return;
+    }
+
+    const result = document.getElementById("sip-result");
+    result.style.display = "block";
+    result.innerHTML = `
+        <p>Invested: ₹${data.invested.toLocaleString("en-IN")}</p>
+        <p>Estimated returns: ₹${data.returns.toLocaleString("en-IN")}</p>
+        <strong>Total value: ₹${data.total.toLocaleString("en-IN")}</strong>
+    `;
+}
+
+/* EMI CALCULATOR */
+
+function calculateEMI() {
+    const p = Number(document.getElementById("loan").value);
+    const annual = Number(document.getElementById("loanrate").value);
+    const years = Number(document.getElementById("loanyears").value);
+
+    if (p <= 0 || annual < 0 || years <= 0) {
+        alert("Enter valid loan details.");
+        return;
+    }
+
+    const r = annual / 1200;
+    const n = years * 12;
+    const emi = r === 0 ? p/n :
+        p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+
+    const result = document.getElementById("emi-result");
+    result.style.display = "block";
+    result.textContent = "Monthly EMI: ₹" +
+        emi.toLocaleString("en-IN",{maximumFractionDigits:2});
+}
+
+/* SAVINGS CALCULATOR */
+
+function calculateSavings() {
+    const monthly = Number(document.getElementById("saving").value);
+    const years = Number(document.getElementById("savingyears").value);
+
+    if (monthly <= 0 || years <= 0) {
+        alert("Enter valid savings details.");
+        return;
+    }
+
+    const total = monthly * years * 12;
+    const result = document.getElementById("saving-result");
+
+    result.style.display = "block";
+    result.textContent = "Total savings: ₹" +
+        total.toLocaleString("en-IN");
+}
+
+/* SCAM DETECTOR */
+
+async function checkScam() {
+    const message = document.getElementById("scam-message").value.trim();
+
+    if (!message) {
+        alert("Please enter a message.");
+        return;
+    }
+
+    const response = await fetch(API + "/scam-check", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({message})
+    });
+
+    const data = await response.json();
+    const result = document.getElementById("scam-result");
+
+    result.style.display = "block";
+    result.textContent = data.message + " Risk: " + data.risk;
+}
+
+/* QUIZ */
+
+const questions = [
+    {
+        q:"Which of these is generally the BEST first place to keep an emergency fund?",
+        options:["A savings account","A risky stock","A luxury item","A cryptocurrency"],
+        answer:0
+    },
+    {
+        q:"What does SIP stand for?",
+        options:["Simple Income Plan","Systematic Investment Plan","Savings Interest Policy","Secure Investment Payment"],
+        answer:1
+    },
+    {
+        q:"What is a budget?",
+        options:["A shopping list","A plan for income and expenses","A type of loan","A bank card"],
+        answer:1
+    },
+    {
+        q:"What should you NEVER share with anyone?",
+        options:["Your OTP","Your first name","Your favourite colour","Your hobby"],
+        answer:0
+    },
+    {
+        q:"What is compound interest?",
+        options:["Interest only on principal","Interest on principal and accumulated interest","A bank fee","A type of tax"],
+        answer:1
+    }
+];
+
+let current = 0;
+let score = 0;
+let selected = null;
+
+function showQuestion() {
+    const q = questions[current];
+    selected = null;
+
+    document.getElementById("question-number").textContent =
+        `QUESTION ${current+1} OF ${questions.length}`;
+
+    document.getElementById("question").textContent = q.q;
+
+    document.getElementById("options").innerHTML =
+        q.options.map((option,index) => `
+            <label class="quiz-option">
+                <input type="radio" name="answer" value="${index}"
+                style="width:auto;margin:0 8px 0 0">
+                ${option}
+            </label>
+        `).join("");
+}
+
+function nextQuestion() {
+    const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+    if (!selectedOption) {
+        alert("Please select an answer.");
+        return;
+    }
+
+    if (Number(selectedOption.value) === questions[current].answer) {
+        score++;
+    }
+
+    current++;
+
+    if (current < questions.length) {
+        showQuestion();
+    } else {
+        document.getElementById("quiz-content").style.display = "none";
+
+        const result = document.getElementById("quiz-result");
+        result.style.display = "block";
+        result.innerHTML = `
+            <h2>Quiz Completed! 🎉</h2>
+            <h3>${score} / ${questions.length} Correct</h3>
+            <p>Keep learning to improve your financial knowledge.</p>
+            <button class="btn" onclick="restartQuiz()">Try Again</button>
+        `;
+    }
+}
+
+function restartQuiz() {
+    current = 0;
+    score = 0;
+    document.getElementById("quiz-content").style.display = "block";
+    document.getElementById("quiz-result").style.display = "none";
+    showQuestion();
+}
+
+/* HARVEST AI */
+
+function toggleChat() {
+    const box = document.getElementById("chatbox");
+    box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+async function askAI() {
+    const input = document.getElementById("chat-input");
+    const answer = document.getElementById("chat-answer");
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    answer.textContent = "Thinking...";
+
+    try {
+        const response = await fetch(API + "/chat", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({message})
+        });
+
+        const data = await response.json();
+        answer.textContent = data.message || data.answer || "No answer available.";
+    } catch {
+        answer.textContent = "AI service is not connected yet.";
+    }
+}
+
+showQuestion();
+</script>
+
+</body>
+</html>
